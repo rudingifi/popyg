@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} - Blog{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">{{ article.title }}</h1>
+        <p class="text-muted">Posted by {{ article.author.username }} on {{ article.date_posted.strftime('%Y-%m-%d') }}</p>
+        <hr>
+        <div class="card-text">
+            {{ article.content | safe }}
+        </div>
+    </div>
+</div>
+{% endblock %} 
