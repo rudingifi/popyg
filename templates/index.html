@@ -7,5 +7,31 @@
     <h1 class="display-4 mb-4">Welcome to My Page</h1>
     <p class="lead">This page belongs to Mark Pavliv</p>
     <p class="text-muted">Stay tuned for some amazing content coming soon!</p>
+    <div id="function-response" class="mt-4">
+        <button onclick="callFunction()" class="btn btn-primary">Call Serverless Function</button>
+        <div id="response" class="mt-3"></div>
+    </div>
 </div>
+
+<script>
+async function callFunction() {
+    try {
+        const response = await fetch('/.netlify/functions/hello');
+        const data = await response.json();
+        document.getElementById('response').innerHTML = `
+            <div class="alert alert-info">
+                <strong>Function Response:</strong><br>
+                ${data.message}<br>
+                <small>Timestamp: ${data.timestamp}</small>
+            </div>
+        `;
+    } catch (error) {
+        document.getElementById('response').innerHTML = `
+            <div class="alert alert-danger">
+                Error calling function: ${error.message}
+            </div>
+        `;
+    }
+}
+</script>
 {% endblock %} 

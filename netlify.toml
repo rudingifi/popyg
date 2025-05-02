@@ -1,6 +1,7 @@
 [build]
   command = "python build.py"
   publish = "dist"
+  functions = "netlify/functions"
 
 [[redirects]]
   from = "/*"
